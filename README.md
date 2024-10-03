@@ -21,3 +21,19 @@ Firebase Backend: Manages user data like login and register.
 6.A few resources to get you started if this is your first Flutter project
 
 ## Screenshot 
+[doctor booking app.pdf](https://github.com/user-attachments/files/17251019/doctor.booking.app.pdf)
+
+#### Contributing
+contributions are welcome from the community! If you'd like to contribute to the Taxi booking app project, follow these steps:
+
+Fork this repository.
+
+Create a new branch for your feature or bug fix.
+
+Make your changes and commit them with descriptive commit messages.
+
+Push your changes to your forked repository.
+
+Create a pull request to the main branch of this repository.
+
+We'll review your pull request and merge it if everything looks good!
