@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1043142503021",
+    "project_id": "book-your-doctor-dc485",
+    "storage_bucket": "book-your-doctor-dc485.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043142503021:android:31cc1f0d0a436cc4f8ad64",
+        "android_client_info": {
+          "package_name": "com.michael.book_your_doctor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpV0fGQwwIYCz63d8MYhJwj_Jaon5lHRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
