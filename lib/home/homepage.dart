@@ -84,7 +84,7 @@ class _HomepageState extends State<Homepage> {
                             color: Colors.white70,
                           ),
                         ),
-                        const SizedBox(height: 16.0),
+                        const SizedBox(height: 4.0),
                       ],
                     ),
                   ),
@@ -100,7 +100,7 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 2),
             Padding(
               padding: const EdgeInsets.only(left: 14.0, right: 14),
               child: Row(
@@ -131,7 +131,6 @@ class _HomepageState extends State<Homepage> {
                 ],
               ),
             ),
-            SizedBox(height: 10,),
             GridView.count(
               crossAxisCount: 4,
               shrinkWrap: true,
@@ -155,7 +154,7 @@ class _HomepageState extends State<Homepage> {
                     title: "Vacination"),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 5),
             Padding(
               padding: const EdgeInsets.only(left: 14.0, right: 14),
               child: Row(

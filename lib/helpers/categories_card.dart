@@ -18,7 +18,7 @@ class CategoriesCard extends StatelessWidget {
         children: [
           Image.asset(
             imagePath, // Use the image path
-            height: 70,
+            height: 45,
           ),
           Text(
             title, // Use the title text
