@@ -1,3 +1,4 @@
+import 'package:book_your_doctor/home/create_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,24 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+  String? fullName;
+
+  @override
+  void initState() {
+    super.initState();
+    getFullName();
+  }
+
+  void getFullName() {
+    // Fetch the user's display name from FirebaseAuth
+    User? user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      fullName = user?.displayName ?? 'No Name'; // Default to 'No Name' if null
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,33 +62,16 @@ class _ProfileState extends State<Profile> {
                         shape: BoxShape.circle,
                         color: Color(0xff1F2A37), // Background color for the icon
                       ),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.edit,
-                          size: 25,
-                          color: Colors.white, // Change color to fit your theme
-                        ),
-                        onPressed: () {
-                          // Add your edit action here
-                        },
-                      ),
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 4),
               Text(
-                "Jonas Macroni",
+                fullName ?? "loading..",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                '+123 456789012',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[600],
                 ),
               ),
               SizedBox(height: 10),
@@ -81,7 +83,11 @@ class _ProfileState extends State<Profile> {
                   style: TextStyle(fontSize: 18, color: Color(0xff6B7280)),
                 ),
                 trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>CreateProfile()
+                      ),
+                      );
+                    },
                     icon: Icon(Icons.keyboard_arrow_right_rounded)),
               ),
               Divider(),

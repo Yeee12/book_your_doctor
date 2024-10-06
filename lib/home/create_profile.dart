@@ -1,5 +1,7 @@
 import 'package:book_your_doctor/helpers/basic_app_btn.dart';
 import 'package:book_your_doctor/home/homepage.dart';
+import 'package:book_your_doctor/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -12,7 +14,7 @@ class CreateProfile extends StatefulWidget {
 
 class _CreateProfileState extends State<CreateProfile> {
   final _formKey = GlobalKey<FormState>();
-  String? name;
+  String? fullName;
   String? nickname;
   String? email;
   String? dateOfBirth;
@@ -55,18 +57,38 @@ class _CreateProfileState extends State<CreateProfile> {
     );
   }
 
-  void _saveForm() {
+  void _saveForm() async {
     if (_formKey.currentState!.validate()) {
-      // If form validation passes
       _showLoadingDialog(); // Show loading dialog
-      Future.delayed(const Duration(seconds: 3), () {
-        // Close the loading dialog and navigate to the homepage
-        Navigator.of(context).pop(); // Dismiss the dialog
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (BuildContext context) => Homepage()),
+
+      // Get the current user
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) {
+        // Save user profile data to Firestore
+        await AuthService().saveUserProfile(
+          user.uid, // User ID
+          fullName ?? '', // Name
+          nickname ?? '', // Nickname
+          email ?? '', // Email
+          dateOfBirth ?? '', // Date of Birth
+          _selectedGender ?? '', // Gender
         );
-      });
+
+        Future.delayed(const Duration(seconds: 3), () {
+          Navigator.of(context).pop(); // Dismiss the dialog
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (BuildContext context) => Homepage()),
+          );
+        });
+      } else {
+        // Handle user not logged in case
+        Navigator.of(context).pop(); // Dismiss the dialog
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("User not logged in.")),
+        );
+      }
     }
   }
 
@@ -122,7 +144,7 @@ class _CreateProfileState extends State<CreateProfile> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      labelText: "Name",
+                      labelText: "FullName",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -134,7 +156,7 @@ class _CreateProfileState extends State<CreateProfile> {
                       return null;
                     },
                     onChanged: (val) {
-                      name = val;
+                      fullName = val;
                     },
                   ),
                 ),
@@ -270,3 +292,4 @@ class _CreateProfileState extends State<CreateProfile> {
     );
   }
 }
+

@@ -126,7 +126,7 @@ class _RegisterState extends State<Register> {
               onPressed: () async {
                 if (_formKey.currentState?.validate() ?? false) {
                   // Call the register method
-                  CustomUser? result = await _auth.registerWithEmailAndPassword(email!, password!);
+                  CustomUser? result = await _auth.registerWithEmailAndPassword(email!, password!, fullname!);
                   if (result == null) {
                   } else {
                     // Handle successful registration
