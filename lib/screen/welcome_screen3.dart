@@ -1,5 +1,6 @@
 import 'package:book_your_doctor/authenticate/sign_in.dart';
 import 'package:book_your_doctor/helpers/basic_app_btn.dart';
+import 'package:book_your_doctor/home/homepage.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen3 extends StatelessWidget {
@@ -48,7 +49,9 @@ class WelcomeScreen3 extends StatelessWidget {
           ),
           SizedBox(height: 12,),
           TextButton(onPressed: () {
-
+            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>SignIn(),
+            ),
+            );
           },
               child: Text("Skip")
           )
